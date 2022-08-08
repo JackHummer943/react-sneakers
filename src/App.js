@@ -4,6 +4,21 @@
 function App() {
   return (
     <div className="wrapper clear">
+      <div className="overlay">
+      <div className="drawer">
+        <h2>Корзина</h2>
+        <div className="cartItem d-flex align-center"></div>
+        <img className="mr-20" 
+        width={70} height={70} 
+        src="/img/sneakers/1.jpg" 
+        alt ="Sneakers" />
+        <div className="mr-20">
+          <p  className="mb-5">Мужские кроссовки Nike Air Max</p>
+          <b>15 999 руб.</b>
+        </div>
+        <img className="removeBtn" src ="img/btn-remove.svg " alt="Remove"/>
+        </div>
+      </div>
     <header className ="d-flex justify-between align-center p-40">
       <div className ="d-flex aliign-center">
         <img width ={40} height = {40} src = "/img/logo.png"/>
@@ -16,7 +31,7 @@ function App() {
       </div>
       <ul className = "d-flex">
         <li className = "mr-30">
-        <img width="18" height="18" src = "/img/vector.svg"/>
+        <img width={18} height={18} src = "/img/vector.svg"/>
           <span>1505 руб.</span>
           </li>
       <li>
@@ -26,9 +41,19 @@ function App() {
       </ul>
     </header>
     <div className= "content p-40">
-      <h1 className="mb-40">Все кроссовки</h1>
+      <div className="d-flex align-center justify-between mb-40">
+        <h1>Все кроссовки</h1>
+        <div className="search-block d-flex">
+        <img src="/img/search.svg" alt="Search" />
+        <input placeholder="Поиск..."></input>
+        </div>
+      </div>
+
       <div className="d-flex">
       <div className="card">
+        <div className="favorite">
+        <img src ="/img/heart-unliked.svg" alt="Unliked"/>
+        </div>
         <img width = {133} height = {112} src="/img/sneakers/1.jpg" alt =" "/>
         <h5>мужские кроссовки Nike Blazer Mid Suede</h5>
         <div className="d-flex justify-between align-center">
