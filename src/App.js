@@ -4,19 +4,50 @@
 function App() {
   return (
     <div className="wrapper clear">
-      <div className="overlay">
+      <div style = {{display: 'none'}} className="overlay">
       <div className="drawer">
-        <h2>Корзина</h2>
-        <div className="cartItem d-flex align-center"></div>
-        <img className="mr-20" 
-        width={70} height={70} 
-        src="/img/sneakers/1.jpg" 
-        alt ="Sneakers" />
-        <div className="mr-20">
-          <p  className="mb-5">Мужские кроссовки Nike Air Max</p>
-          <b>15 999 руб.</b>
+        <h2 className="d-flex justify-between mb-30">
+          Корзина <img className="cu-p" src ="img/btn-remove.svg " alt="Remove"/></h2>
+
+        <div className="items">
+        <div className="cartItem d-flex align-center mb-20">
+            <div 
+            style={{backgroundImage: 'url(/img/sneakers/1.jpg'}} 
+            className="cartItemImg"></div>
+
+            <div className="mr-20 flex">
+              <p  className="mb-5">Мужские кроссовки Nike Air Max</p>
+              <b>15 999 руб.</b>
+            </div>
+            <img className="removeBtn" src ="img/btn-remove.svg " alt="Remove"/>
+            </div>
+            <div className="cartItem d-flex align-center ">
+          <div 
+          style={{backgroundImage: 'url(/img/sneakers/2.jpg'}} 
+          className="cartItemImg"></div>
+
+          <div className="mr-20 flex">
+            <p  className="mb-5">Мужские кроссовки Nike Air Max</p>
+            <b>15 999 руб.</b>
+          </div>
+          <img className="removeBtn" src ="img/btn-remove.svg " alt="Remove"/>
+          </div>
+
+
         </div>
-        <img className="removeBtn" src ="img/btn-remove.svg " alt="Remove"/>
+        <div className="cartTotalBlock">
+        <ul >
+        <li ><span>Итого:</span>
+        <div></div>
+        <b>24 498 руб.</b>
+        </li>
+        <li className="d-flex"><span>Налог 5%</span>
+        <div></div>
+        <b>2500 руб.</b>
+        </li>
+       </ul>
+       <button className="greenButton">Оформить заказ <img src="/img/arrow.svg" alt="Arrow "/></button>
+        </div> 
         </div>
       </div>
     <header className ="d-flex justify-between align-center p-40">
