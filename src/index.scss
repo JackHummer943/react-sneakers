@@ -6,7 +6,7 @@ body {
   background-color: #e7f6ff;
 }
 
-button, input {
+* {
   font-family: 'Inter', system-ui;
 }
 
@@ -33,6 +33,7 @@ header {
   }
 }
   .content {
+    
     h1 {
       margin: 0;
     }
