@@ -7,18 +7,30 @@ import React from 'react';
 
 function App() {
   const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([ {
+    "title": "Мужские кроссовки Nike Blazzer Mid Suede",
+    "price": "14 540",
+    "imageUrl": "./img/sneakers/1.jpg"
+   },
+   {
+    "title": "Мужские Кроссовки Nike Air Max 270",
+    "price": "16 540",
+    "imageUrl": "./img/sneakers/2.jpg"
+   }]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
-  fetch('https://62f72b81ab9f1f8e89f9780a.mockapi.io/items')
+  React.useEffect(() => {
+    fetch('https://62f72b81ab9f1f8e89f9780a.mockapi.io/items')
   .then((res) => {
     return res.json();
   })
   .then((json) => {
     setItems(json);
   });
+  }, []);
   return (
     <div className="wrapper clear">
-    {cartOpened && <Drawer onClose= {() => setCartOpened(false)}/>}
+    {cartOpened && <Drawer items = {cartItems} onClose= {() => setCartOpened(false)}/>}
     <Header onClickCart = {() => setCartOpened(true)}/>
     <div className= "content  p-40">
       <div className="d-flex align-center justify-between mb-40">
