@@ -31,10 +31,9 @@ const onAddToCart = (obj) => {
 };
 
 const onRemoveItem = (id) => {
-  axios.delete('https://62f72b81ab9f1f8e89f9780a.mockapi.io/cart/${id}');
-//  setCartItems((prev) => [... prev, obj]);
-
-}
+  axios.delete(`https://62f72b81ab9f1f8e89f9780a.mockapi.io/cart/${id}`);
+  setCartItems((prev) => prev.filter((item) => item.id !== id));
+};
 
 const onChangeSearchInput = (event) => {
   setSearchValue(event.target.value);
