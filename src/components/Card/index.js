@@ -10,13 +10,14 @@ function Card({  title, imageUrl, price, onFavorite, onPlus }) {
     setIsAdded(!isAdded);
   };
   const onClickFavorite = () => {
-    
-  }
+    onFavorite({title, imageUrl, price});
+    setIsFavorite(!isFavorite);
+  };
 
 
     return (
         <div className={styles.card}>
-          <div className={styles.favorite} onClick={onFavorite}>
+          <div className={styles.favorite} onClick={onClickFavorite}>
         <img src ={isFavorite ? '/img/liked.svg' : '/img/unliked.svg'} alt="Unliked"/>
         </div>
         <img width = {133} height = {112} src={imageUrl} alt ="Sneakers "/>
