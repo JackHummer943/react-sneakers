@@ -55,6 +55,16 @@ const onChangeSearchInput = (event) => {
    
     <Header onClickCart = {() => setCartOpened(true)}/>
     <Routes>
+ <Route  path="/"  element={<Home
+ items={items}
+ searchValue={searchValue}
+ setSearchValue={setSearchValue}
+ onChangeSearchInput={onChangeSearchInput}
+ onAddToFavorite={onAddToFavorite}
+ onAddToCart={onAddToCart}
+ />} />                
+        </Routes> 
+        <Routes>
  <Route  path="/favorites"  element={<Favorites/>} />                
         </Routes> 
     </div>
