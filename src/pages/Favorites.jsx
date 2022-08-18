@@ -1,4 +1,5 @@
-function Favorites () {
+import Card from '../components/Card';
+function Favorites ({items, onAddToFavorite }) {
     return (
 
 <div className= "content  p-40">
@@ -8,7 +9,15 @@ function Favorites () {
 </div>
 
 <div className="d-flex flex-wrap">
-  Тут будут мои закладки
+{items
+  .map((item, index) => ( 
+    <Card 
+      key = {index}
+      favorited = {true}
+      onFavorite = {onAddToFavorite}
+      {... item}
+    />
+  ))}
 </div>
 </div>
     );
