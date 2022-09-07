@@ -16,23 +16,24 @@ function App() {
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
 
-  React.useEffect(() => {
+  React.useEffect( async () => {
+    async function fetchData() {
+      const cartResponse = await axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/cart');
+      const favoritesResponse = await  axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/favorites');
+      const itemsResponse = await axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/items');
 
-
-  axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/items').then((res) => {
-    setItems(res.data);
-  });
-  axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/cart').then((res) => {
-    setCartItems(res.data);
-  });
-  axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/favorites').then((res) => {
-    setFavorites(res.data);
-  });
+      
+      setItems(res.data);
+      setCartItems(res.data);
+      setFavorites(res.data);
+    }
   }, []);
+  
 
 const onAddToCart = (obj) => {
-  if (cartItems.find((item) => item.id === obj.id)) {
-  setCartItems((prev) => prev.filter((item) => item.id !== obj.id));
+  if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+  axios.delete(`https://62f72b81ab9f1f8e89f9780a.mockapi.io/cart${obj.id}`); 
+  setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
   } else {
   axios.post('https://62f72b81ab9f1f8e89f9780a.mockapi.io/cart', obj);
   setCartItems((prev) => [... prev, obj]);
@@ -69,14 +70,16 @@ const onChangeSearchInput = (event) => {
     )}
     <Header onClickCart = {() => setCartOpened(true)}/>
     <Routes>
- <Route  path="/"  element={<Home
- items={items}
- searchValue={searchValue}
- setSearchValue={setSearchValue}
- onChangeSearchInput={onChangeSearchInput}
- onAddToFavorite={onAddToFavorite}
- onAddToCart={onAddToCart}
- />} />                
+    <Route  path="/"  element={
+    <Home
+    items={items}
+    cartItems={cartItems}
+    searchValue={searchValue}
+    setSearchValue={setSearchValue}
+    onChangeSearchInput={onChangeSearchInput}
+    onAddToFavorite={onAddToFavorite}
+    onAddToCart={onAddToCart}
+    />} />                
         </Routes> 
         <Routes>
  <Route  path="/favorites"  element={<Favorites

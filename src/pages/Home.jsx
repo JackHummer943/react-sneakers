@@ -1,6 +1,8 @@
 import Card from '../components/Card';
 function Home (
-    {items,
+    {
+    items,
+    cartItems,
     searchValue,
     setSearchValue,
     onChangeSearchInput,
@@ -10,7 +12,7 @@ function Home (
      ) {
     return (
 
-<div className= "content  p-40">
+<div className= "content p-40">
 <div className="d-flex align-center justify-between mb-40">
   <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}</h1>
   <div className="search-block d-flex">
@@ -28,13 +30,16 @@ function Home (
 </div>
 
 <div className="d-flex flex-wrap">
-  {items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item, index) => ( 
+  {items
+  .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+  .map((item, index) => ( 
     <Card 
-    key = {index}
-    onFavorite = {(obj) => onAddToFavorite(obj)}
-    onPlus = {(obj) => onAddToCart(obj)}
-    {... item}
-    />
+      key = {index}
+      onFavorite = {(obj) => onAddToFavorite(obj)}
+      onPlus = {(obj) => onAddToCart(obj)}
+      added = {cartItems.some(obj => Number(obj.id) === Number(item.id))}
+      {... item}
+      />
   ))}
 </div>
 </div>
