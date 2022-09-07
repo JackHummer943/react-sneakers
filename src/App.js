@@ -16,16 +16,16 @@ function App() {
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
 
-  React.useEffect( async () => {
+  React.useEffect(() => {
     async function fetchData() {
       const cartResponse = await axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/cart');
       const favoritesResponse = await  axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/favorites');
       const itemsResponse = await axios.get('https://62f72b81ab9f1f8e89f9780a.mockapi.io/items');
 
       
-      setItems(res.data);
-      setCartItems(res.data);
-      setFavorites(res.data);
+      setItems(cartResponse.data);
+      setCartItems(favoritesResponse.data);
+      setFavorites(itemsResponse.data);
     }
   }, []);
   
