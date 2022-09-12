@@ -22,9 +22,9 @@ function Card({ id, title, imageUrl, price, onFavorite, onPlus, favorited = fals
             loading ?   (
             <ContentLoader 
             speed={2}
-            width={150}
-            height={265}
-            viewBox="0 0 150 265"
+            width={165}
+            height={250}
+            viewBox="0 0 155 265"
             backgroundColor="#f3f3f3"
             foregroundColor="#ecebeb"
           >
@@ -39,7 +39,7 @@ function Card({ id, title, imageUrl, price, onFavorite, onPlus, favorited = fals
             <div className={styles.favorite} onClick={onClickFavorite}>
         <img src ={isFavorite ? '/img/liked.svg' : '/img/unliked.svg'} alt="Unliked"/>
         </div>
-        <img width = {133} height = {112} src={imageUrl} alt ="Sneakers "/>
+        <img width = "100%" height = {135} src={imageUrl} alt ="Sneakers "/>
         <h5>{title}</h5>
         <div className="d-flex justify-between align-center">
           <div className="d-flex flex-column ">
