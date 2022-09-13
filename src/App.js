@@ -7,6 +7,7 @@ import React from 'react';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 
+const AppContext = React.createContext({});
 
 
 function App() {
@@ -87,6 +88,8 @@ const onChangeSearchInput = (event) => {
     />} />                
         </Routes> 
         <Routes>
+
+
  <Route  path="/favorites"  element={<Favorites
  items={favorites} onAddToFavorite={onAddToFavorite}
  />} />                
