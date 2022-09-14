@@ -7,7 +7,9 @@ import React from 'react';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 
-const AppContext = React.createContext({});
+export const AppContext = React.createContext({});
+
+
 
 
 function App() {
@@ -69,10 +71,11 @@ const onChangeSearchInput = (event) => {
 
 
   return (
-    <div className="wrapper clear">
+    <AppContext.Provider value={{ items, cartItems,favorites  }}>
+      <div className="wrapper clear">
     {cartOpened && (
-    <Drawer items = {cartItems} onClose= {() => setCartOpened(false)} onRemove={onRemoveItem}/>
-    )}
+      <Drawer items = {cartItems} onClose= {() => setCartOpened(false)} onRemove={onRemoveItem}/>
+      )}
     <Header onClickCart = {() => setCartOpened(true)}/>
     <Routes>
     <Route  path="/"  element={
@@ -91,10 +94,11 @@ const onChangeSearchInput = (event) => {
 
 
  <Route  path="/favorites"  element={<Favorites
- items={favorites} onAddToFavorite={onAddToFavorite}
+  onAddToFavorite={onAddToFavorite}
  />} />                
         </Routes> 
     </div>
+    </AppContext.Provider>
   );
 }
 
