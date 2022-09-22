@@ -68,6 +68,9 @@ try {
 const onChangeSearchInput = (event) => {
   setSearchValue(event.target.value);
 };
+const isItemAdded = () => {
+
+}
 
 
   return (

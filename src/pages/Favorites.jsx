@@ -3,7 +3,7 @@ import Card from '../components/Card';
 import AppContext from '../context';
 
 function Favorites ({ onAddToFavorite }) {
-  const state = React.useContext(AppContext);
+  const {favorites} = React.useContext(AppContext);
     
   
 return (
@@ -14,7 +14,7 @@ return (
 </div>
 
 <div className="d-flex flex-wrap">
-  {[].map((item, index) => ( 
+  {favorites.map((item, index) => ( 
       <Card 
         key = {index}
         favorited = {true}
