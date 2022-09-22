@@ -68,9 +68,9 @@ try {
 const onChangeSearchInput = (event) => {
   setSearchValue(event.target.value);
 };
-const isItemAdded = () => {
-
-}
+const isItemAdded = (id) => {
+  return cartItems.some((obj) => Number(obj.id) === Number(id));
+};
 
 
   return (
