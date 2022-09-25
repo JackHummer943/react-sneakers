@@ -1,4 +1,17 @@
+import React from 'react';
+import axios from 'axios';
+
+import AppContext from '../context';
+import Info from "./Info";
 function Drawer({onClose, onRemove, items = []}) {
+  const [isOrderComplete, setIsOrderComplete] = React.useState(false);
+  const {cartItems,setCartItems} = React.useContext(AppContext);
+
+  const onClickOrder = () => {
+    axios.post('/orders',cartItems);
+    setIsOrderComplete(true);
+    setCartItems([]);
+  };
     return (
         <div  className="overlay">
           <div className="drawer">
@@ -7,7 +20,7 @@ function Drawer({onClose, onRemove, items = []}) {
   </h2>
 
   { items.length > 0 ? (
-  <div>
+  <div className="d-flex flex-column flex">
     <div className="items">
       {items.map((obj) => (
           <div key={obj.id} className="cartItem d-flex align-center mb-20">
@@ -41,21 +54,17 @@ function Drawer({onClose, onRemove, items = []}) {
   <b>2500 руб.</b>
   </li>
 </ul>
-<button className="greenButton">
+<button onClick={onClickOrder} className="greenButton">
   Оформить заказ <img src="/img/arrow.svg" alt="Arrow "/>
   </button>
 </div> 
  </div>
     ) : ( 
-    <div className="cartEmpty d-flex align-center justify-center flex-column flex">
-      <img className="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="XXX"/>
-      <h2>Корзина пустая</h2>
-      <p className="opacity-6"> Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-      <button onClick={onClose} className="greenButton">
-        <img src="/img/arrow.svg" alt="Arrow"/>
-        Вернуться назад
-      </button>
-      </div>  
+      <Info 
+      title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
+      description={isOrderComplete ? "Ваш заказ №18 скоро бдует передан курьерской доставке " : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."} 
+      image={isOrderComplete ? "/img/complete-order.jpg" : "/img/empty-cart.jpg"}
+      />
   )}
 </div>
 </div>
